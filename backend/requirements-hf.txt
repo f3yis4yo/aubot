@@ -1,0 +1,4 @@
+# Optional: Hugging Face sentiment backend (AUBOT_SENTIMENT_BACKEND=hf). ~2 GB with PyTorch.
+-r requirements.txt
+transformers>=4.44
+torch>=2.4

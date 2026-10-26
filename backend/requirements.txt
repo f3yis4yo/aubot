@@ -1,0 +1,20 @@
+# Runtime
+Django==5.2.18
+django-ninja==1.7.1
+channels==4.3.2
+channels-redis==4.3.0
+redis==8.1.0
+psycopg[binary]==3.3.6
+dj-database-url==3.1.2
+uvicorn[standard]==0.54.0
+whitenoise==6.12.0
+python-dotenv==1.2.4
+email-validator==2.3.0
+PyYAML==6.0.3
+openai==3.37.0
+fastembed==0.9.1
+scikit-learn==1.9.1
+vaderSentiment==3.3.2
+pypdf==6.21.2
+python-docx==1.2.0
+httpx==0.28.1

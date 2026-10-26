@@ -1,0 +1,347 @@
+# UC01 intent model: training phrases + response templates.
+# Placeholders in {braces} are filled from the BusinessProfile (editable by the SME owner).
+# The evaluation set in data/eval/tc01_intents.csv is held out: none of its queries appear here.
+#
+# actions: hints for the UI (e.g. show the upload button or the "talk to a human" button).
+
+intents:
+  opening_hours:
+    responses:
+      - "We're open {opening_hours}. Outside those hours I can still help you here, and urgent jobs can be logged for a call-back first thing."
+    phrases:
+      - what are your opening hours
+      - when are you open
+      - what time do you open
+      - what time do you close today
+      - are you open on saturday
+      - are you open sunday
+      - are you open on public holidays
+      - what are your business hours
+      - hours of operation
+      - when do you guys shut
+      - are you open now
+      - what days are you open
+      - is the office open on weekends
+      - till what time are you open
+      - opening times please
+      - can I call you after 6pm
+      - are you open on anzac day
+      - what time does the shop open in the morning
+      - are you working this weekend
+      - when can I reach someone in the office
+      - trading hours
+      - open late on thursdays?
+      - do you close for lunch
+      - are you open over christmas
+      - wat time u open
+
+  book_appointment:
+    actions: [handoff]
+    responses:
+      - "I can help you book a visit. Tell me the job (for example a leaking tap or a faulty power point), your suburb and a preferred day, and our scheduling team will confirm a time. Standard bookings are usually available within 1–2 business days."
+    phrases:
+      - I want to book an appointment
+      - can I book a plumber
+      - book an electrician for next week
+      - I need someone to come out and fix my tap
+      - can you send someone tomorrow
+      - schedule a service visit
+      - how do I make a booking
+      - I'd like to arrange a technician
+      - do you have availability this friday
+      - can a sparky come to my house
+      - need a plumber asap
+      - set up a job for my hot water system
+      - I want someone to install a ceiling fan
+      - book a time for a blocked drain
+      - when is your next available appointment
+      - can I get a booking for thursday morning
+      - my toilet is leaking can someone come
+      - request a callout
+      - I need to book a service
+      - arrange an inspection at my property
+      - can I book online
+      - i need an electrician to check my switchboard
+      - get a tradie out to my place
+      - make an apointment
+      - please book me in
+
+  manage_booking:
+    responses:
+      - "No problem. To change or cancel a booking, reply with your booking or case reference and the new day that suits. Cancellations with more than 24 hours' notice are free; later cancellations may incur the call-out fee."
+    phrases:
+      - I need to reschedule my appointment
+      - can I change my booking time
+      - cancel my booking
+      - I want to cancel the job
+      - move my appointment to next week
+      - what time is my technician arriving
+      - is my booking still on for tomorrow
+      - can I push my appointment back
+      - I can't make it on monday
+      - change the date of my service
+      - where is the plumber, he's late
+      - check the status of my booking
+      - has my booking been confirmed
+      - I need to postpone
+      - cancel tomorrow's visit
+      - update my appointment
+      - can we do the job a different day
+      - is there a fee to cancel
+      - my technician didn't show up
+      - when will my tradie get here
+      - confirm my booking
+      - i need to cancell my apointment
+      - bring my booking forward
+      - change booking address
+      - reschedule please
+
+  pricing_quote:
+    responses:
+      - "Our standard call-out fee is $99 (including the first 30 minutes on site), then $120 per hour in 15-minute blocks. Larger jobs get a free written quote after inspection. Parts are charged at the listed price, and there's no after-hours surcharge for jobs booked during business hours."
+    phrases:
+      - how much do you charge
+      - what are your rates
+      - how much is a call out fee
+      - can I get a quote
+      - how much to fix a leaking tap
+      - what's your hourly rate
+      - price for installing a power point
+      - how much does a hot water system replacement cost
+      - do you charge for quotes
+      - is the quote free
+      - give me an estimate
+      - what does it cost to unblock a drain
+      - are your prices including gst
+      - how expensive is an electrician
+      - do you have a minimum charge
+      - after hours rates
+      - cost of a service call
+      - ballpark price for rewiring a house
+      - is there a travel fee
+      - quote for a bathroom renovation plumbing
+      - how much will it be
+      - pricing
+      - wats ur price
+      - can you send me a quote
+      - fixed price or hourly?
+
+  services_offered:
+    responses:
+      - "We handle residential and small-commercial plumbing and electrical work: leaking taps and toilets, blocked drains, hot water systems, gas fitting, power points, lighting, switchboard upgrades, smoke alarms and safety inspections. All our technicians are licensed in NSW."
+    phrases:
+      - what services do you offer
+      - what do you do
+      - do you do plumbing
+      - do you do electrical work
+      - can you fix hot water systems
+      - do you install solar panels
+      - do you do gas fitting
+      - can you unblock drains
+      - do you install smoke alarms
+      - do you do commercial work
+      - can you replace a switchboard
+      - do you do bathroom renovations
+      - do you fix air conditioners
+      - do you install lights
+      - what kind of jobs do you take
+      - are your electricians licensed
+      - do you do emergency repairs
+      - do you do safety inspections
+      - can you install an ev charger
+      - do you repair dishwashers
+      - list of services
+      - do u do roofing
+      - can you help with a burst pipe
+      - do you install water filters
+      - what work do your tradies do
+
+  location_contact:
+    responses:
+      - "You can reach us on {phone} or {email}. Our office is at {address}, and we service the Sydney metro area from the Northern Beaches to Sutherland and west to Parramatta."
+    phrases:
+      - what is your phone number
+      - how can I contact you
+      - where are you located
+      - what's your address
+      - what is your email
+      - do you service my area
+      - do you come to parramatta
+      - which suburbs do you cover
+      - can I visit your office
+      - how do I get in touch
+      - do you service the northern beaches
+      - is there parking at your office
+      - what's your website
+      - give me your contact details
+      - do you travel to the blue mountains
+      - I want to call you
+      - where's your shop
+      - do you cover sutherland shire
+      - service area
+      - number to call
+      - can i email you
+      - how far do you travel
+      - wheres ur office
+      - postal address for correspondence
+      - are you sydney based
+
+  payment_billing:
+    responses:
+      - "We accept card, bank transfer and BPAY; card payments can be made on site when the job is finished. Invoices are due within 14 days. For a copy of an invoice, a receipt or a billing question, share your invoice number and our accounts team will follow up."
+    phrases:
+      - how can I pay
+      - do you accept credit card
+      - can I pay by bank transfer
+      - I need a copy of my invoice
+      - I was charged twice
+      - I want a refund
+      - when is my invoice due
+      - can I pay in instalments
+      - do you take afterpay
+      - send me a receipt
+      - my invoice is wrong
+      - what are your bank details
+      - can I pay cash
+      - is there a surcharge for card
+      - pay my bill
+      - billing question
+      - I haven't received my invoice
+      - can I get a tax invoice
+      - payment options
+      - do you offer payment plans
+      - i paid but it says overdue
+      - how do i pay my invoce
+      - bpay details
+      - can I pay on the day
+      - dispute a charge
+
+  document_submission:
+    actions: [upload]
+    responses:
+      - "You can send documents straight here. Use the paperclip button to upload a PDF or Word (.docx) file up to 5 MB, such as a quote request, insurance claim form, strata approval or photos pasted into a document. You'll get a case reference as soon as it's received."
+    phrases:
+      - I want to send you a document
+      - how do I upload a file
+      - can I attach my insurance form
+      - I need to submit some paperwork
+      - where do I send my strata approval
+      - can I upload a pdf
+      - I have a document for you
+      - send my signed quote
+      - submit an insurance claim form
+      - can I email you the plans
+      - how do I give you my compliance certificate
+      - I want to upload photos of the damage
+      - attach my invoice
+      - upload paperwork
+      - send a word document
+      - where can I submit my forms
+      - I have the signed contract
+      - can I send you a file
+      - lodge documents
+      - here is my application form
+      - send attachment
+      - i need to uplaod a document
+      - submit docs
+      - accept docx files?
+      - can I provide the floor plan
+
+  complaint:
+    actions: [handoff]
+    responses:
+      - "I'm really sorry about this. Your feedback matters and a member of our team should look at it personally. Tap \"Talk to a human\" and I'll pass them the full conversation so you don't need to repeat yourself."
+    phrases:
+      - I want to make a complaint
+      - your technician was rude
+      - the job was done badly
+      - I'm not happy with the service
+      - the leak is back after you fixed it
+      - this is unacceptable
+      - you damaged my floor
+      - very disappointed with your work
+      - your plumber left a mess
+      - the repair didn't work
+      - I've been waiting for weeks
+      - terrible service
+      - I want to lodge a formal complaint
+      - nobody called me back
+      - you overcharged me and the work is poor
+      - the electrician broke my light fitting
+      - worst experience ever
+      - I'm going to leave a bad review
+      - the problem is still not fixed
+      - your staff were unprofessional
+      - im very unhappy
+      - this is the third time I've called
+      - poor workmanship
+      - compliant about the service
+      - I'm frustrated with how this was handled
+
+  human_agent:
+    actions: [handoff]
+    escalate: true
+    responses:
+      - "Of course, I'll connect you with a specialist now."
+    phrases:
+      - I want to talk to a human
+      - can I speak to a real person
+      - connect me to an agent
+      - let me talk to someone
+      - transfer me to a staff member
+      - I don't want to talk to a bot
+      - get me a human
+      - speak to customer service
+      - I need a real person
+      - put me through to someone
+      - talk to a representative
+      - is there a person I can chat with
+      - human please
+      - operator
+      - can a staff member help me
+      - I'd rather speak to someone from the team
+      - escalate this
+      - get your manager
+      - live agent
+      - real human
+      - can i talk to sombody
+      - stop, I want a person
+      - customer support person
+      - pass me to a specialist
+      - talk to staff
+
+  out_of_scope:
+    # Not a business intent. Anything classified here is treated as "no confident intent":
+    # the bot may only answer it from the FAQ, otherwise it escalates (UC01 -> UC03).
+    responses: []
+    phrases:
+      - what's the weather like tomorrow
+      - tell me a joke
+      - who won the footy last night
+      - what is the capital of france
+      - can you write my essay
+      - what's the meaning of life
+      - recommend a good restaurant
+      - how do I cook pasta
+      - what's bitcoin worth
+      - are you sentient
+      - what's 25 times 17
+      - write me a poem
+      - play some music
+      - translate hello into spanish
+      - who is the prime minister
+      - can you help with my homework
+      - what movie should I watch
+      - how old are you
+      - do you like cats
+      - book me a flight to melbourne
+      - order a pizza
+      - what's the news today
+      - asdfgh
+      - blah blah
+      - can you do my taxes
+      - help me learn python
+      - what is love
+      - are aliens real
+      - recommend a car to buy
+      - how tall is mount everest

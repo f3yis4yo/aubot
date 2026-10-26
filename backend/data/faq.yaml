@@ -1,0 +1,57 @@
+# Seed knowledge base for the FAQ-grounded fallback (UC01). Loaded into the
+# FaqEntry table by `manage.py seed_demo`; the SME owner edits it in Django admin.
+- question: Do you offer emergency or after-hours call-outs?
+  answer: Yes. Emergency call-outs for burst pipes, gas leaks, no power or sewage overflows are available 24/7 across the Sydney metro area. The emergency call-out fee is $180 including the first 30 minutes, then $160 per hour. For a gas leak, leave the property and call 000 or the gas emergency line first.
+  tags: emergency urgent after hours burst gas leak night weekend
+
+- question: Are your technicians licensed and insured?
+  answer: All plumbers and electricians hold current NSW Fair Trading licences, and the business carries $20 million public liability insurance. Licence numbers are printed on every quote and invoice.
+  tags: licence licensed insurance insured qualified certificate
+
+- question: Do you guarantee your work?
+  answer: Workmanship is guaranteed for 12 months. Parts carry the manufacturer's warranty, typically 1–5 years; hot water systems carry up to 10 years on the tank depending on the brand. If something we fixed fails within the guarantee period we return at no labour cost.
+  tags: warranty guarantee comeback faulty again
+
+- question: What is your cancellation policy?
+  answer: Cancel or reschedule free of charge with more than 24 hours' notice. With less than 24 hours' notice, or if no one is home when the technician arrives, the $99 call-out fee may apply.
+  tags: cancel cancellation reschedule fee notice
+
+- question: How much is the call-out fee and hourly rate?
+  answer: The standard call-out fee is $99 including the first 30 minutes on site, then $120 per hour charged in 15-minute blocks. All prices include GST. Quotes for larger jobs are free.
+  tags: price cost fee rate hourly quote gst
+
+- question: Which areas do you service?
+  answer: The Sydney metro area, from the Northern Beaches to the Sutherland Shire and west to Parramatta and Blacktown. Jobs further out, for example the Blue Mountains or Central Coast, are quoted with a travel fee.
+  tags: area suburb location travel distance region
+
+- question: Do you install or service hot water systems?
+  answer: Yes. We repair and replace electric, gas, heat-pump and solar-boosted hot water systems from Rheem, Rinnai, Dux and Thermann. Most replacements are completed same day when the unit is in stock. Heat-pump replacements may qualify for the NSW Energy Savings Scheme rebate.
+  tags: hot water heater system rheem rinnai heat pump rebate
+
+- question: Do you install EV chargers or solar?
+  answer: We install home EV chargers (7 kW single-phase and 22 kW three-phase), including switchboard upgrades when needed. We do not install solar panels, but we can connect a battery or charger to an existing solar system.
+  tags: ev electric vehicle charger solar battery tesla
+
+- question: What payment methods do you accept?
+  answer: Visa, Mastercard and Amex (1.2% card surcharge), bank transfer, and BPAY. Cash is not accepted on site. Invoices are due within 14 days. Payment plans for jobs over $1,500 are available on request through our accounts team.
+  tags: payment pay card cash bpay invoice instalment plan afterpay surcharge
+
+- question: Do you do smoke alarm compliance for landlords?
+  answer: Yes. We supply and install hardwired and 10-year lithium smoke alarms that meet NSW residential tenancy requirements and issue a compliance certificate for property managers.
+  tags: smoke alarm compliance landlord rental property manager certificate
+
+- question: What documents can I send, and how?
+  answer: Upload PDF or Word (.docx) files up to 5 MB in the chat using the paperclip button, for example insurance claim forms, strata approvals, signed quotes or plans. Each upload gets a case reference. Scanned images without a text layer are accepted but are reviewed manually.
+  tags: document upload pdf docx file attach form insurance strata
+
+- question: How quickly can you attend?
+  answer: Standard bookings are usually available within 1–2 business days. Emergency jobs are typically attended within 2–4 hours depending on location and demand.
+  tags: availability soon fast quickly wait time today tomorrow
+
+- question: Do you clean up after a job?
+  answer: Yes. Technicians use drop sheets and shoe covers, remove old parts and packaging, and leave the work area clean. Disposal of old hot water units is included in the replacement price.
+  tags: clean mess tidy disposal rubbish
+
+- question: How do you handle my personal information?
+  answer: We collect only the details needed to answer your enquiry or complete your job, store them securely, and use them only for that purpose, in line with the Privacy Act 1988. To generate some answers and to transcribe voice, message text and voice clips are sent to our AI provider (OpenAI, based in the USA). Voice recordings are transcribed and immediately discarded, never stored. You can ask for your data to be corrected or deleted at any time.
+  tags: privacy data personal information delete recording voice

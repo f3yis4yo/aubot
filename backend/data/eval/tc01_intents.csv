@@ -1,0 +1,101 @@
+query,expected_intent,category
+Are you guys open this Saturday afternoon?,opening_hours,routine
+What time does your office close on Fridays?,opening_hours,routine
+Is anyone around on a Sunday?,opening_hours,routine
+Can I ring you at 7 in the morning?,opening_hours,routine
+Do you work on the Queen's Birthday long weekend?,opening_hours,routine
+what hours r u open,opening_hours,misspelled
+Opening hours for the Balmain office?,opening_hours,routine
+When do you start answering phones each day?,opening_hours,routine
+are u open rite now,opening_hours,misspelled
+How late can I come by the office?,opening_hours,ambiguous
+I'd like to get a plumber out on Wednesday,book_appointment,routine
+Could you send an electrician to fix a tripping safety switch?,book_appointment,routine
+My kitchen sink is blocked and I need someone to come,book_appointment,routine
+Can I lock in a time for a hot water install?,book_appointment,routine
+I need a sparky to install two new power points,book_appointment,routine
+Is there a slot free on Monday morning for a job?,book_appointment,routine
+Please organise a technician for my rental property,book_appointment,routine
+can sum1 come fix my shower this week,book_appointment,misspelled
+I need a plumber round to look at a leak under the house,book_appointment,routine
+Get someone to my place,book_appointment,ambiguous
+I have to move my Thursday booking to Friday,manage_booking,routine
+Please cancel the appointment I made yesterday,manage_booking,routine
+Is the technician still coming at 10?,manage_booking,routine
+Could we change my service to the afternoon instead?,manage_booking,routine
+The tradie hasn't turned up yet and it's past the time,manage_booking,complaint
+Can I delay my job by a week?,manage_booking,routine
+Do I get charged if I cancel the day before?,manage_booking,routine
+has my apointment been confrimed,manage_booking,misspelled
+I booked last week but haven't heard anything about the time,manage_booking,routine
+Something came up for Tuesday,manage_booking,ambiguous
+How much do you charge per hour for an electrician?,pricing_quote,product
+What would it cost to replace a toilet cistern?,pricing_quote,product
+Are quotes free or do I pay for them?,pricing_quote,product
+What's the fee just to come out and look?,pricing_quote,product
+Roughly how much for a new switchboard?,pricing_quote,product
+Do your prices include GST?,pricing_quote,product
+I'd like a quote for replacing all the downlights,pricing_quote,product
+how much 4 a blocked drain,pricing_quote,misspelled
+What's your cheapest option for a leaking tap?,pricing_quote,product
+How much?,pricing_quote,ambiguous
+Do you guys fix gas cooktops?,services_offered,product
+Can you install a rainwater tank pump?,services_offered,product
+Do you do commercial jobs for cafes?,services_offered,product
+Are you able to fit a new kitchen mixer tap?,services_offered,product
+Do you work on air con units?,services_offered,product
+Do you install outdoor lighting?,services_offered,product
+Can your team repair a burst water main?,services_offered,product
+do u fix hot water sistems,services_offered,misspelled
+Do you do pool pumps?,services_offered,product
+What sort of things can you help me with?,services_offered,ambiguous
+What's the best number to call you on?,location_contact,routine
+Where exactly is your office?,location_contact,routine
+Do you come out to Blacktown?,location_contact,routine
+Can I get your email address?,location_contact,routine
+Do you cover Cronulla?,location_contact,routine
+I'd like to drop in to the office in person,location_contact,routine
+How do I reach your team by phone?,location_contact,routine
+wat is ur fone number,location_contact,misspelled
+Are you based in Sydney or interstate?,location_contact,routine
+Where are you?,location_contact,ambiguous
+Can I pay my invoice with Amex?,payment_billing,routine
+I think I've been billed for the wrong amount,payment_billing,complaint
+Please resend my last invoice,payment_billing,routine
+What are your BSB and account details?,payment_billing,routine
+Is it possible to split the payment over a few months?,payment_billing,routine
+When do I need to pay the invoice by?,payment_billing,routine
+I need a receipt for my tax return,payment_billing,routine
+can i pay wit cash on the day,payment_billing,misspelled
+I'd like my money back for the callout,payment_billing,complaint
+About my bill,payment_billing,ambiguous
+I need to send through my insurance paperwork,document_submission,routine
+Where can I upload the signed quote?,document_submission,routine
+Can I send you the strata letter as a PDF?,document_submission,routine
+I have the building plans in a Word file,document_submission,routine
+How do I get my claim form to you?,document_submission,routine
+Can I attach the compliance certificate here?,document_submission,routine
+I'd like to submit the landlord approval form,document_submission,routine
+how do i atach a file,document_submission,misspelled
+I've got photos of the damage in a document,document_submission,routine
+I have a form for you,document_submission,ambiguous
+The plumber made things worse and I'm furious,complaint,complaint
+I'm unhappy with how my job was handled,complaint,complaint
+Your guy scratched my bathtub,complaint,complaint
+The electrician was really rude to my mum,complaint,complaint
+I've had the same leak fixed three times now,complaint,complaint
+I want to complain about the quality of the work,complaint,complaint
+Nobody has returned my calls for days,complaint,complaint
+realy bad service very dissapointed,complaint,misspelled
+Your team left rubbish all over my yard,complaint,complaint
+This isn't good enough,complaint,ambiguous
+Can I chat with a real staff member?,human_agent,complaint
+I'd like to speak to an actual person please,human_agent,complaint
+Put me through to a human,human_agent,complaint
+I don't want a robot I want a person,human_agent,complaint
+Connect me with someone on your team,human_agent,complaint
+Can I get transferred to customer service?,human_agent,complaint
+I need to talk to a manager,human_agent,complaint
+let me speek to a persn,human_agent,misspelled
+Is there a live person available?,human_agent,complaint
+Someone real please,human_agent,ambiguous

@@ -1,0 +1,59 @@
+# Production stack for a single EC2 host. Run from the repo root:
+#   docker compose -f deploy/aws/docker-compose.prod.yml --env-file .env.prod up -d --build
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    environment:
+      AUBOT_DOMAIN: ${AUBOT_DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on: [web]
+
+  web:
+    build: ../..
+    restart: unless-stopped
+    env_file: ../../.env.prod
+    environment:
+      DATABASE_URL: postgres://aubot:${POSTGRES_PASSWORD}@db:5432/aubot
+      REDIS_URL: redis://redis:6379/0
+      DJANGO_DEBUG: "0"
+      DJANGO_ALLOWED_HOSTS: ${AUBOT_DOMAIN}
+      DJANGO_CSRF_TRUSTED_ORIGINS: https://${AUBOT_DOMAIN}
+      # 1 GB instance: one async worker (I/O-bound workload) keeps memory headroom.
+      WEB_CONCURRENCY: ${WEB_CONCURRENCY:-1}
+    volumes: [media:/app/backend/media]
+    depends_on:
+      db: { condition: service_healthy }
+      redis: { condition: service_started }
+    mem_limit: 600m
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    command: ["postgres", "-c", "shared_buffers=64MB", "-c", "max_connections=40"]
+    environment:
+      POSTGRES_DB: aubot
+      POSTGRES_USER: aubot
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aubot"]
+      interval: 5s
+      retries: 20
+    mem_limit: 200m
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--maxmemory", "48mb", "--maxmemory-policy", "allkeys-lru", "--save", ""]
+    mem_limit: 64m
+
+volumes:
+  pgdata:
+  media:
+  caddy_data:
+  caddy_config:

@@ -1,0 +1,16 @@
+# Automatic HTTPS (Let's Encrypt) for the public hostname; HTTP is redirected to HTTPS.
+# WebSockets (/ws/...) are proxied transparently.
+{$AUBOT_DOMAIN} {
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		Permissions-Policy "microphone=(self), camera=()"
+		-Server
+	}
+	request_body /api/chat/* {
+		max_size 7MB
+	}
+	reverse_proxy web:8000
+}

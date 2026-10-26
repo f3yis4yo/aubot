@@ -24,3 +24,8 @@ frontend/dist/
 
 # Coursework documents (personal details; kept out of the code repo)
 *.docx
+
+# AWS deployment state and credentials (local only)
+deploy/aws/.state
+deploy/aws/.credentials
+.env.prod

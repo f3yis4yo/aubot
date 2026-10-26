@@ -1,0 +1,50 @@
+# Render Blueprint: web app (Dockerfile) + PostgreSQL + Redis-compatible Key Value.
+# Deploy: Render dashboard -> New -> Blueprint -> pick this repo. You'll be asked for OPENAI_API_KEY.
+# Staff logins: users "owner" and "specialist"; passwords are generated, see the web service's Environment tab.
+services:
+  - type: web
+    name: aubot
+    runtime: docker
+    plan: free            # free sleeps after 15 min idle; "starter" stays awake and allows a disk for uploads
+    region: singapore     # closest Render region to Australia
+    autoDeploy: true      # redeploys on every push to main
+    dockerCommand: >-
+      sh -c "python manage.py migrate --noinput && python manage.py seed_demo &&
+      exec uvicorn config.asgi:application --host 0.0.0.0 --port $PORT --workers 1
+      --proxy-headers --forwarded-allow-ips='*'"
+    envVars:
+      - key: DJANGO_DEBUG
+        value: "0"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: aubot-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: aubot-redis
+          property: connectionString
+      - key: OPENAI_API_KEY
+        sync: false       # entered in the dashboard, never committed
+      - key: AUBOT_MONTHLY_BUDGET_USD
+        value: "20"
+      - key: AUBOT_OWNER_PASSWORD
+        generateValue: true
+      - key: AUBOT_SPECIALIST_PASSWORD
+        generateValue: true
+
+  - type: keyvalue
+    name: aubot-redis
+    plan: free
+    region: singapore
+    maxmemoryPolicy: allkeys-lru
+    ipAllowList: []       # reachable only from your Render services
+
+databases:
+  - name: aubot-db
+    plan: free            # free Postgres expires after 30 days; upgrade to keep data
+    region: singapore
+    databaseName: aubot
+    user: aubot

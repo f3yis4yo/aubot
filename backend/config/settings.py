@@ -121,9 +121,12 @@ SESSION_COOKIE_SAMESITE = "Lax"
 CSRF_COOKIE_SAMESITE = "Lax"
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
+    # HTTPS-only cookies in production; DJANGO_SECURE_COOKIES=0 for plain-HTTP local Docker runs.
+    SESSION_COOKIE_SECURE = CSRF_COOKIE_SECURE = env_bool("DJANGO_SECURE_COOKIES", True)
+    # Most PaaS hosts redirect to HTTPS at the edge; enable these once the domain is HTTPS-only.
+    SECURE_SSL_REDIRECT = env_bool("DJANGO_SSL_REDIRECT", False)
+    SECURE_HSTS_SECONDS = int(os.environ.get("DJANGO_HSTS_SECONDS", "0"))
 
 LOGGING = {
     "version": 1,

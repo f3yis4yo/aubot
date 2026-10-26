@@ -1,0 +1,37 @@
+# Local production-like stack: docker compose up --build  ->  http://localhost:8000
+# Then create staff accounts: docker compose exec web python manage.py seed_demo
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: aubot
+      POSTGRES_USER: aubot
+      POSTGRES_PASSWORD: aubot
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aubot"]
+      interval: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+
+  web:
+    build: .
+    ports: ["8000:8000"]
+    env_file: .env
+    environment:
+      DATABASE_URL: postgres://aubot:aubot@db:5432/aubot
+      REDIS_URL: redis://redis:6379/0
+      DJANGO_DEBUG: "0"
+      DJANGO_SECURE_COOKIES: "0"   # plain HTTP locally; leave unset (secure) behind HTTPS
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1
+      DJANGO_CSRF_TRUSTED_ORIGINS: http://localhost:8000
+    volumes: [media:/app/backend/media]
+    depends_on:
+      db: { condition: service_healthy }
+      redis: { condition: service_started }
+
+volumes:
+  pgdata:
+  media:

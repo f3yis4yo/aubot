@@ -8,10 +8,11 @@ services:
     plan: free            # free sleeps after 15 min idle; "starter" stays awake and allows a disk for uploads
     region: singapore     # closest Render region to Australia
     autoDeploy: true      # redeploys on every push to main
+    # Render already runs this through `sh -c`, so no extra wrapper or outer quotes.
     dockerCommand: >-
-      sh -c "python manage.py migrate --noinput && python manage.py seed_demo &&
+      python manage.py migrate --noinput && python manage.py seed_demo &&
       exec uvicorn config.asgi:application --host 0.0.0.0 --port $PORT --workers 1
-      --proxy-headers --forwarded-allow-ips='*'"
+      --proxy-headers --forwarded-allow-ips='*'
     envVars:
       - key: DJANGO_DEBUG
         value: "0"

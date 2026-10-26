@@ -106,6 +106,7 @@ STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"},
 }
+WHITENOISE_USE_FINDERS = DEBUG  # serve frontend/dist without collectstatic during development
 MEDIA_ROOT = Path(os.environ.get("MEDIA_ROOT", BASE_DIR / "media"))
 MEDIA_URL = "/media/"  # never routed publicly; staff download through the API
 
@@ -155,7 +156,8 @@ AUBOT = {
     "MONTHLY_BUDGET_USD": float(os.environ.get("AUBOT_MONTHLY_BUDGET_USD", "20")),
     "MAX_UPLOAD_BYTES": int(float(os.environ.get("AUBOT_MAX_UPLOAD_MB", "5")) * 1024 * 1024),
     "MAX_AUDIO_BYTES": 3 * 1024 * 1024,
-    "RATE_LIMIT_PER_MINUTE": int(os.environ.get("AUBOT_RATE_LIMIT_PER_MINUTE", "30")),
+    "RATE_LIMIT_PER_MINUTE": int(os.environ.get("AUBOT_RATE_LIMIT_PER_MINUTE", "30")),  # messages per chat
+    "SESSION_RATE_LIMIT_PER_MINUTE": int(os.environ.get("AUBOT_SESSION_RATE_LIMIT_PER_MINUTE", "20")),  # new chats per IP
     "RETENTION_DAYS": int(os.environ.get("AUBOT_RETENTION_DAYS", "90")),
     "DATA_DIR": BASE_DIR / "data",
 }

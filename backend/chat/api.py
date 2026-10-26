@@ -1,11 +1,13 @@
 """Customer-facing chat API (UC01, UC03 hand-off request)."""
 import uuid
 
+from django.conf import settings
 from django.utils import timezone
 from ninja import Router, Schema
 from ninja.errors import HttpError
 from pydantic import EmailStr, Field
 
+from core import llm
 from core.models import BusinessProfile
 from core.security import client_ip, rate_limit
 
@@ -56,7 +58,7 @@ async def session_state(session: ChatSession) -> dict:
 
 @router.post("/sessions")
 async def create_session(request):
-    await rate_limit(f"new-session:{client_ip(request)}", limit=20)
+    await rate_limit(f"new-session:{client_ip(request)}", limit=settings.AUBOT["SESSION_RATE_LIMIT_PER_MINUTE"])
     session, token, _ = await start_session()
     return {"token": token, **(await session_state(session))}
 
@@ -133,10 +135,16 @@ async def close_session(request, session_id: uuid.UUID):
 public_router = Router(tags=["public"])
 
 
+async def _voice_available() -> bool:
+    try:
+        await llm.ensure_budget()
+        return True
+    except llm.LLMUnavailable:
+        return False
+
+
 @public_router.get("/config")
 async def public_config(request):
-    from django.conf import settings
-
     from .engine import AI_DISCLOSURE
 
     profile = await BusinessProfile.aget_solo()
@@ -148,7 +156,9 @@ async def public_config(request):
         "buddy_name": profile.buddy_name,
         "ai_disclosure": AI_DISCLOSURE,
         "max_upload_mb": settings.AUBOT["MAX_UPLOAD_BYTES"] // (1024 * 1024),
-        "voice_available": bool(settings.AUBOT["OPENAI_API_KEY"]),
+        # Voice needs the paid speech APIs: hide the mic when there's no key, the budget is
+        # spent or the circuit breaker has paused OpenAI, rather than failing after recording.
+        "voice_available": await _voice_available(),
     }
 
 

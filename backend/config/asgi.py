@@ -1,4 +1,5 @@
 import os
+import threading
 
 from django.core.asgi import get_asgi_application
 
@@ -11,6 +12,16 @@ from channels.security.websocket import AllowedHostsOriginValidator  # noqa: E40
 from django.urls import path  # noqa: E402
 
 from chat.consumers import CustomerConsumer, StaffConsumer  # noqa: E402
+from chat.nlu.base import get_intent_engine  # noqa: E402
+
+
+def _warm_up():
+    """Load the embedding model and train the intent classifier as the worker boots,
+    so the first customer doesn't pay a ~1.5 s cold start."""
+    get_intent_engine().classify("hello")
+
+
+threading.Thread(target=_warm_up, name="aubot-warmup", daemon=True).start()
 
 application = ProtocolTypeRouter(
     {

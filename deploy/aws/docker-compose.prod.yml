@@ -32,14 +32,16 @@ services:
     mem_limit: 600m
 
   db:
-    image: postgres:16-alpine
+    # Same major version as Render (18), so dumps from there restore cleanly.
+    image: postgres:18-alpine
     restart: unless-stopped
     command: ["postgres", "-c", "shared_buffers=64MB", "-c", "max_connections=40"]
     environment:
       POSTGRES_DB: aubot
       POSTGRES_USER: aubot
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    volumes: [pgdata:/var/lib/postgresql/data]
+    # Postgres 18 images keep data under /var/lib/postgresql/18/, so mount the parent.
+    volumes: [pgdata:/var/lib/postgresql]
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U aubot"]
       interval: 5s

@@ -29,3 +29,7 @@ frontend/dist/
 deploy/aws/.state
 deploy/aws/.credentials
 .env.prod
+
+# Database copies taken from Render (deploy/aws/migrate-from-render.sh)
+deploy/aws/backups/
+*.dump

@@ -76,4 +76,10 @@ sudo systemctl daemon-reload && sudo systemctl enable --now aubot-backup.timer a
 
 echo "Waiting for https://$DOMAIN …"
 for i in $(seq 1 60); do curl -fsS "https://$DOMAIN/api/health" >/dev/null 2>&1 && break; sleep 5; done
-curl -fsS "https://$DOMAIN/api/health" && echo && echo "Live: https://$DOMAIN   Console: https://$DOMAIN/staff"
+curl -fsS "https://$DOMAIN/api/health" && echo
+
+# Demo business, FAQ and staff accounts. Safe to repeat: existing accounts keep their
+# passwords, and new ones print theirs here once. A Render import replaces these.
+echo "Creating demo data and staff accounts (if missing)…"
+$SSH 'cd /opt/aubot && docker compose -f deploy/aws/docker-compose.prod.yml --env-file .env.prod exec -T web python manage.py seed_demo'
+echo "Live: https://$DOMAIN   Console: https://$DOMAIN/staff"
